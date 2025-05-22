@@ -1,35 +1,42 @@
 (function () {
     'use strict';
-    angular.module('TooMuchApp', [])
-        .controller('TooMuchController', TooMuchController);
-    TooMuchController.$inject = ["$scope"];
-    function TooMuchController($scope) {
-        $scope.items = "";
-        $scope.message = "";
-        $scope.isError = false;
-        $scope.CheckIfTooMuch = function () {
-            var items = $scope.items && $scope.items.length > 0 ? $scope.items.split(",") : [];
-            var counter = 0;
-            for (var i = 0; i < items.length; i++) {
-                if (items[i].trim().length > 1) {
-                    counter += 1;
-                }
-                if (counter > 3) {
-                    break;
-                }
-            }
-            if (counter > 3) {
-                $scope.isError = false;
-                $scope.message = "Too Much!";
-            }
-            else if (counter > 0 && counter <= 3) {
-                $scope.isError = false;
-                $scope.message = "Enjoy!";
-            }
-            else {
-                $scope.isError = true;
-                $scope.message = "Please enter data first!";
-            }
+    angular.module('ShoppingListCheckOff', [])
+        .controller('ToBuyController', ToBuyController)
+        .controller('AlreadyBoughtController', AlreadyBoughtController)
+        .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
+
+    ToBuyController.$inject = ["$scope", "ShoppingListCheckOffService"];
+    function ToBuyController($scope, ShoppingListCheckOffService) {
+        $scope.toBuyList = ShoppingListCheckOffService.getToBuyList();
+        $scope.buyClicked = function (index) {
+            ShoppingListCheckOffService.buyClicked(index);
         }
+    }
+    AlreadyBoughtController.$inject = ["$scope", "ShoppingListCheckOffService"]
+    function AlreadyBoughtController($scope, ShoppingListCheckOffService) {
+        $scope.alreadyBoughtList = ShoppingListCheckOffService.getAlreadyBoughtList();
+    }
+    function ShoppingListCheckOffService() {
+        var toBuyList = [{ name: "Cookies", quantity: 10 },
+        { name: "Soda", quantity: 5 },
+        { name: "Juice", quantity: 7 },
+        { name: "Apples", quantity: 20 },
+        { name: "Coffee", quantity: 15 }
+        ];
+        var alreadyBoughtList = [];
+
+        this.getToBuyList = function () {
+            return toBuyList;
+        }
+
+        this.getAlreadyBoughtList = function() {
+            return alreadyBoughtList;
+        }
+
+        this.buyClicked = function (index) {
+            alreadyBoughtList.push(toBuyList[index]);
+            toBuyList.splice(index, 1);
+        }
+
     }
 })();

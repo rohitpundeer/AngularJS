@@ -1,0 +1,1 @@
+Please use Live Server extension in visual studio code to run the app

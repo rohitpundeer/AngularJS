@@ -23,21 +23,27 @@
     <div class="container" style="margin-top: 70px;" ng-controller="AppController">
         <div class="row">
             <div class="col text-center">
-                <button class="btn btn-outline-primary" type="button" ng-click="btnReviewModule1Clicked()">Review Module 1</button>
-                <button class="btn btn-outline-primary" type="button" ng-click="btnReviewModule2Clicked()">Review Module 2</button>
-                <button class="btn btn-outline-primary" type="button" ng-click="btnReviewModule3Clicked()">Review Module 3</button>
-                <button class="btn btn-outline-primary" type="button" ng-click="btnReviewModule4Clicked()">Review Module 4</button>
-                <button class="btn btn-outline-primary" type="button" ng-click="btnReviewModule5Clicked()">Review Module 5</button>
+                <button class="btn btn-outline-primary" type="button" ng-click="btnReviewModule1Clicked()">Review Module
+                    1</button>
+                <button class="btn btn-outline-primary" type="button" ng-click="btnReviewModule2Clicked()">Review Module
+                    2</button>
+                <button class="btn btn-outline-primary" type="button" ng-click="btnReviewModule3Clicked()">Review Module
+                    3</button>
+                <button class="btn btn-outline-primary" type="button" ng-click="btnReviewModule4Clicked()">Review Module
+                    4</button>
+                <button class="btn btn-outline-primary" type="button" ng-click="btnReviewModule5Clicked()">Review Module
+                    5</button>
             </div>
         </div>
+
         <div class="row justify-content-center">
             <div class="col p-4 text-center">
-                <h4>Welcome to the review of<b>&nbsp;{{title}}&nbsp;</b>Application</h4>
+                <h4>Welcome to the review of<span class="h3"><b>&nbsp;{{title}}&nbsp;</b></span>Application</h4>
             </div>
         </div>
-        
+
         <div class="row justify-content-center" ng-if="isModule1Review">
-            <div  ng-controller="TooMuchController"  class="col col-md-6 col-sm-12 text-center">
+            <div ng-controller="TooMuchController" class="col col-md-6 col-sm-12 text-center">
                 <label for="txt-items" class="form-label">Please input comma separated values in below text box to
                     check</label>
                 <input type="text"
@@ -51,30 +57,47 @@
         </div>
 
         <div class="row justify-content-center" ng-if="isModule2Review">
-            <div ng-controller="ToBuyController" class="col col-md-4 col-sm-6 text-center">
+            <div ng-controller="ToBuyController as toBuy" class="col col-sm-6 text-center">
                 <h5>To Buy</h5><br />
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item" ng-repeat="item in toBuyList"> Buy {{item.quantity}} {{item.name}}
+                    <li class="list-group-item" ng-repeat="item in toBuy.toBuyList"> Buy {{item.quantity}} {{item.name}}
                         &nbsp;
-                        <button class="btn btn-info btn-sm" ng-click="buyClicked($index)">Buy</button>
+                        <button class="btn btn-info btn-sm" ng-click="toBuy.buyClicked($index)">Buy</button>
                     </li>
                 </ul>
-                <h6 ng-if="toBuyList.length == 0" class="text-danger">Everything is bought!</h6>
+                <h6 ng-if="toBuy.toBuyList.length == 0" class="text-danger">Everything is bought!</h6>
             </div>
-            <div ng-controller="AlreadyBoughtController" class="col col-md-4 col-sm-6 align-items-center">
+            <div ng-controller="AlreadyBoughtController as ab" class="col col-sm-6 text-center">
                 <h5>Already Bought</h5><br />
-                <ul ng-if="alreadyBoughtList.length > 0" class="list-group list-group-flush">
-                    <li class="list-group-item" ng-repeat="item in alreadyBoughtList"> Bought {{item.quantity}}
+                <ul ng-if="ab.alreadyBoughtList.length > 0" class="list-group list-group-flush">
+                    <li class="list-group-item" ng-repeat="item in ab.alreadyBoughtList"> Bought {{item.quantity}}
                         {{item.name}}
                     </li>
                 </ul>
-                <h6 ng-if="alreadyBoughtList.length == 0" class="text-danger">Nothing bought yet!</h6>
+                <h6 ng-if="ab.alreadyBoughtList.length == 0" class="text-danger">Nothing bought yet!</h6>
             </div>
         </div>
 
-        
         <div class="row justify-content-center" ng-if="isModule3Review">
-            <div class="col col-md-4 col-sm-6 text-center">
+            <div ng-controller="NarrowItDownController as narrow" class="col">
+                <div class="row justify-content-center">
+                    <div class="col col-md-6 col-sm-12 text-center">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search Here"
+                                ng-model="narrow.searchText" aria-label="Search Here" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-info" type="button" id="button-addon2"
+                                ng-click="narrow.narrowItDownClicked()">Narrow It Down For
+                                Me!</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col">
+                        <found-items items="narrow.foundItems" on-remove="narrow.removeMenuItem(index)"
+                            ng-if="narrow.foundItems.length > 0"></found-items>
+                            <h6 class="text-danger text-center" ng-if="narrow.message">{{narrow.message}}</h6>
+                    </div>
+                </div>
             </div>
         </div>
 

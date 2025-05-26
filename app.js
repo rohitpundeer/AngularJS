@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('AngularJsApp', [])
+    angular.module('AngularJsApp')
         .controller('AppController', AppController)
         .controller('TooMuchController', TooMuchController)
         .controller('ToBuyController', ToBuyController)
@@ -13,8 +13,8 @@
     /// All Controller Definations Goes Here   
     AppController.$inject = ["$scope"];
     function AppController($scope) {
-        $scope.title = "Module 1 - Too Much";
-        $scope.selectedModule = "M1";
+        $scope.title = "Module 4 - Restaurant Menu App";;
+        $scope.selectedModule = "M4";
         $scope.isModule1Review = true;
         $scope.isModule2Review = false;
         $scope.isModule3Review = false;
@@ -40,7 +40,7 @@
         }
 
         $scope.btnReviewModule4Clicked = function () {
-            $scope.title = "Module 4 - Not Created Yet";
+            $scope.title = "Module 4 - Restaurant Menu App";
             $scope.selectedModule = "M4";
             reviewModule();
         }
@@ -58,6 +58,7 @@
             $scope.isModule4Review = ($scope.selectedModule === 'M4');
             $scope.isModule5Review = ($scope.selectedModule === 'M5');
         }
+        reviewModule();
     }
 
     TooMuchController.$inject = ["$scope"];

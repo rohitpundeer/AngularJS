@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('AngularJsApp', [])
+    angular.module('AngularJsApp')
         .controller('AppController', AppController)
         .controller('TooMuchController', TooMuchController)
         .controller('ToBuyController', ToBuyController)
@@ -11,52 +11,27 @@
         .directive('foundItems', FoundItems);
 
     /// All Controller Definations Goes Here   
-    AppController.$inject = ["$scope"];
-    function AppController($scope) {
-        $scope.title = "Module 1 - Too Much";
-        $scope.selectedModule = "M1";
-        $scope.isModule1Review = true;
-        $scope.isModule2Review = false;
-        $scope.isModule3Review = false;
-        $scope.isModule4Review = false;
-        $scope.isModule5Review = false;
+    AppController.$inject = ["$scope", "$state"];
+    function AppController($scope, $state) {
 
         $scope.btnReviewModule1Clicked = function () {
-            $scope.title = "Module 1 - Too Much";
-            $scope.selectedModule = "M1";
-            reviewModule();
+             $state.go("toomuch");
         }
 
         $scope.btnReviewModule2Clicked = function () {
-            $scope.title = "Module 2 - To Buy";
-            $scope.selectedModule = "M2";
-            reviewModule();
+             $state.go("checkout");
         }
 
         $scope.btnReviewModule3Clicked = function () {
-            $scope.title = "Module 3 - Menu Search";
-            $scope.selectedModule = "M3";
-            reviewModule();
+             $state.go("menusearch");
         }
 
         $scope.btnReviewModule4Clicked = function () {
-            $scope.title = "Module 4 - Not Created Yet";
-            $scope.selectedModule = "M4";
-            reviewModule();
+             $state.go("restaurantmenu.home");
         }
 
         $scope.btnReviewModule5Clicked = function () {
-            $scope.title = "Module 5 - Not Created Yet";
-            $scope.selectedModule = "M5";
-            reviewModule();
-        }
-
-        function reviewModule() {
-            $scope.isModule1Review = ($scope.selectedModule === 'M1');
-            $scope.isModule2Review = ($scope.selectedModule === 'M2');
-            $scope.isModule3Review = ($scope.selectedModule === 'M3');
-            $scope.isModule4Review = ($scope.selectedModule === 'M4');
-            $scope.isModule5Review = ($scope.selectedModule === 'M5');
+             $state.go("module5.newsletter");
         }
     }
 
@@ -177,20 +152,6 @@
                     });
                 });
                 return data;
-            });
-
-        }
-
-        function asyncGreet(name) {
-            // perform some asynchronous operation, resolve or reject the promise when appropriate.
-            return $q(function (resolve, reject) {
-                setTimeout(function () {
-                    if (okToGreet(name)) {
-                        resolve('Hello, ' + name + '!');
-                    } else {
-                        reject('Greeting ' + name + ' is not allowed.');
-                    }
-                }, 1000);
             });
         }
     }

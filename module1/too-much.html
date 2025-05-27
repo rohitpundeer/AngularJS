@@ -1,0 +1,19 @@
+<div class="row justify-content-center">
+    <div class="col p-4 text-center">
+        <h4>Welcome to the review of<span class="h3"><b>&nbsp;Module 1 - Too Much&nbsp;</b></span>Application</h4>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div ng-controller="TooMuchController" class="col col-md-6 col-sm-12 text-center">
+        <label for="txt-items" class="form-label">Please input comma separated values in below text box to
+            check</label>
+        <input type="text"
+            class="form-control {{isError ? 'border-danger' : ''}} {{!isError && message.length > 0 ? 'border-success' : ''}}"
+            name="txt-items" ng-model="items" placeholder="Add items here"></input>
+        <small class="text-body-secondary">Empty item(i.e. , ,) not considered towards the count</small>
+        </spc> <br /><br />
+        <button class="btn btn-primary" ng-click="CheckIfTooMuch()">Check If Too Much</button><br /><br />
+        <h4 class="{{isError ? 'text-danger' : 'text-success'}}">{{message}}</h4>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<form novalidate class="text-start bg-success-subtle py-4 px-5" name="signupForm">
+  <div class="mb-4 text-center">
+    <h4>Sign Up</h4>
+  </div>
+  <br />
+  <div class="mb-4">
+    <label for="firstname" class="form-label">First Name</label>
+    <input type="text" class="form-control" name="firstname" placeholder="First Name" ng-model="$ctrl.user.firstname"
+      required>
+    <span class="text-danger" ng-if="signupForm.firstname.$error.required && signupForm.firstname.$touched">Firstname is
+      Required!</span>
+  </div>
+
+  <div class="mb-4">
+    <label for="lastname" class="form-label">Last Name</label>
+    <input type="text" class="form-control" name="lastname" placeholder="Last Name" ng-model="$ctrl.user.lastname"
+      required>
+    <span class="text-danger" ng-if="signupForm.lastname.$error.required && signupForm.lastname.$touched">Lastname is
+      Required!</span>
+  </div>
+
+  <div class="mb-4">
+    <label for="favourite" class="form-label">Favourite Menu Item Code</label>
+    <input type="text" class="form-control" name="favourite" placeholder="Favourite Menu Item Code (ex: L1, L10)"
+      ng-model="$ctrl.user.favourite" required ng-maxlength="3" ng-change="$ctrl.validateMenuCode()">
+    <span class="text-danger" ng-if="signupForm.favourite.$error.required && signupForm.favourite.$touched">Favourite
+      Menu Item Code is Required!</span>
+    <span class="text-danger" ng-if="signupForm.favourite.$error.maxlength && signupForm.favourite.$touched">Code
+      shouldn't length exceeds Maximum length criteria!</span>
+    <span class="text-danger" ng-if="$ctrl.isInvalidMenuCode && signupForm.favourite.$touched">No such menu number
+      exists!!!</span>
+  </div>
+
+  <div class="mb-4">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Email"
+      ng-model="$ctrl.user.email" required>
+    <div id="emailHelp" class="form-text text-center">We'll never share your email with anyone else.</div>
+    <span class="text-danger" ng-if="signupForm.email.$invalid && signupForm.email.$touched">Email must be valid (ex:
+      email@domain)</span>
+  </div>
+
+  <div class="mb-4">
+    <label for="phone" class="form-label">Phone Number</label>
+    <input type="phone" class="form-control" name="phone" aria-describedby="phoneHelp"
+      placeholder="Phone Number (ex: ###-###-####)" ng-model="$ctrl.user.phone" pattern="(\d{3})-(\d{3})-(\d{4})">
+    <div id="phoneHelp" class="form-text text-center">We'll never share your phone number with anyone else.</div>
+    <span class="text-danger" ng-if="signupForm.phone.$invalid && signupForm.phone.$touched">Phone should follow proper
+      format (ex: ###-###-####)</span>
+  </div>
+  <div class="mb-4 text-success text-center" ng-if="!signupForm.$invalid && $ctrl.successMsg">
+    <h5>{{$ctrl.successMsg}}</h5>
+  </div>
+
+  <div class="text-center">
+    <button type="button" class="btn btn-primary" ng-disabled="signupForm.$invalid || $ctrl.isInvalidMenuCode"
+      ng-click="$ctrl.signup()">Submit</button>
+  </div>
+</form>

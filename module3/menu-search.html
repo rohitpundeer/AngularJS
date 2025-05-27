@@ -1,0 +1,28 @@
+<div class="row justify-content-center">
+    <div class="col p-4 text-center">
+        <h4>Welcome to the review of<span class="h3"><b>&nbsp;Module 3 - Menu Search&nbsp;</b></span>Application</h4>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div ng-controller="NarrowItDownController as narrow" class="col">
+        <div class="row justify-content-center">
+            <div class="col col-md-6 col-sm-12 text-center">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search Here" ng-model="narrow.searchText"
+                        aria-label="Search Here" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-info" type="button" id="button-addon2"
+                        ng-click="narrow.narrowItDownClicked()">Narrow It Down For
+                        Me!</button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <found-items items="narrow.foundItems" on-remove="narrow.removeMenuItem(index)"
+                    ng-if="narrow.foundItems.length > 0"></found-items>
+                <h6 class="text-danger text-center" ng-if="narrow.message">{{narrow.message}}</h6>
+            </div>
+        </div>
+    </div>
+</div>

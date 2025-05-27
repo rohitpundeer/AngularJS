@@ -12,6 +12,7 @@
         scope.user = {
             firstanme: "",
             lastname: "",
+            favourite: "",
             favouriteItem: {
                 name: "",
                 description: "",
@@ -25,9 +26,17 @@
         scope.validateMenuCode = function () {
             scope.successMsg = "";
             var code = scope.user.favourite || "";
-            if (code.length == 2) {
-                var secondPlace = isNaN(parseInt(code.charAt(1))) ? code.charAt(1) : (parseInt(code.charAt(1)) - 1);
-                NewsletterService.validateMenuCode(code.charAt(0), secondPlace).then(function (response) {
+
+            if (code.length >= 2) {
+                var charArray = code.split("");
+                var catCode = charArray[0];
+                var secondPlace = "";
+
+                for(var i = 1; i < charArray.length ; i++) {
+                    secondPlace += charArray[i];
+                }
+                var itemCode = isNaN(parseInt(secondPlace)) ? secondPlace : (parseInt(secondPlace) - 1);
+                NewsletterService.validateMenuCode(catCode, itemCode).then(function (response) {
                     if (response.data) {
                         scope.user.favouriteItem = response.data;
                         scope.isInvalidMenuCode = false;

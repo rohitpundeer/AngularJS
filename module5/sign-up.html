@@ -21,8 +21,8 @@
 
   <div class="mb-4">
     <label for="favourite" class="form-label">Favourite Menu Item Code</label>
-    <input type="text" class="form-control" name="favourite" placeholder="Favourite Menu Item Code (ex: L1)"
-      ng-model="$ctrl.user.favourite" required ng-maxlength="2" ng-change="$ctrl.validateMenuCode()">
+    <input type="text" class="form-control" name="favourite" placeholder="Favourite Menu Item Code (ex: L1, L10)"
+      ng-model="$ctrl.user.favourite" required ng-maxlength="3" ng-change="$ctrl.validateMenuCode()">
     <span class="text-danger" ng-if="signupForm.favourite.$error.required && signupForm.favourite.$touched">Favourite
       Menu Item Code is Required!</span>
     <span class="text-danger" ng-if="signupForm.favourite.$error.maxlength && signupForm.favourite.$touched">Code

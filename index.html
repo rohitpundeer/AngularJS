@@ -39,99 +39,34 @@
         </div>
 
         <div class="row justify-content-center">
-            <div class="col p-4 text-center">
-                <h4>Welcome to the review of<span class="h3"><b>&nbsp;{{title}}&nbsp;</b></span>Application</h4>
-            </div>
-        </div>
-
-        <div class="row justify-content-center" ng-if="isModule1Review">
-            <div ng-controller="TooMuchController" class="col col-md-6 col-sm-12 text-center">
-                <label for="txt-items" class="form-label">Please input comma separated values in below text box to
-                    check</label>
-                <input type="text"
-                    class="form-control {{isError ? 'border-danger' : ''}} {{!isError && message.length > 0 ? 'border-success' : ''}}"
-                    name="txt-items" ng-model="items" placeholder="Add items here"></input>
-                <small class="text-body-secondary">Empty item(i.e. , ,) not considered towards the count</small>
-                </spc> <br /><br />
-                <button class="btn btn-primary" ng-click="CheckIfTooMuch()">Check If Too Much</button><br /><br />
-                <h4 class="{{isError ? 'text-danger' : 'text-success'}}">{{message}}</h4>
-            </div>
-        </div>
-
-        <div class="row justify-content-center" ng-if="isModule2Review">
-            <div ng-controller="ToBuyController as toBuy" class="col col-sm-6 text-center">
-                <h5>To Buy</h5><br />
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item" ng-repeat="item in toBuy.toBuyList"> Buy {{item.quantity}} {{item.name}}
-                        &nbsp;
-                        <button class="btn btn-info btn-sm" ng-click="toBuy.buyClicked($index)">Buy</button>
-                    </li>
-                </ul>
-                <h6 ng-if="toBuy.toBuyList.length == 0" class="text-danger">Everything is bought!</h6>
-            </div>
-            <div ng-controller="AlreadyBoughtController as ab" class="col col-sm-6 text-center">
-                <h5>Already Bought</h5><br />
-                <ul ng-if="ab.alreadyBoughtList.length > 0" class="list-group list-group-flush">
-                    <li class="list-group-item" ng-repeat="item in ab.alreadyBoughtList"> Bought {{item.quantity}}
-                        {{item.name}}
-                    </li>
-                </ul>
-                <h6 ng-if="ab.alreadyBoughtList.length == 0" class="text-danger">Nothing bought yet!</h6>
-            </div>
-        </div>
-
-        <div class="row justify-content-center" ng-if="isModule3Review">
-            <div ng-controller="NarrowItDownController as narrow" class="col">
-                <div class="row justify-content-center">
-                    <div class="col col-md-6 col-sm-12 text-center">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search Here"
-                                ng-model="narrow.searchText" aria-label="Search Here" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-info" type="button" id="button-addon2"
-                                ng-click="narrow.narrowItDownClicked()">Narrow It Down For
-                                Me!</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-5">
-                    <div class="col">
-                        <found-items items="narrow.foundItems" on-remove="narrow.removeMenuItem(index)"
-                            ng-if="narrow.foundItems.length > 0"></found-items>
-                        <h6 class="text-danger text-center" ng-if="narrow.message">{{narrow.message}}</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row justify-content-center" ng-if="isModule4Review">
             <div class="col text-center">
                 <ui-view></ui-view>
             </div>
         </div>
-
-        <div class="row justify-content-center" ng-if="isModule5Review">
-            <div class="col col-md-4 col-sm-6 text-center">
-            </div>
-        </div>
-
+        
     </div>
 </body>
-    <!-- Modules -->
-    <script src="./main.module.js"></script>
-    <script src="./app.js"></script>
-    <script src="module4/menuapp/menuapp.module.js"></script>
-    <script src="module4/data/data.module.js"></script>
-
-    <!-- Components -->
-    <script src="module4/menuapp/categories.component.js"></script>
-    <script src="module4/menuapp/items.component.js"></script>
+<!-- Modules -->
+<script src="./main.module.js"></script>
+<script src="./app.js"></script>
+<script src="module4/menuapp/menuapp.module.js"></script>
+<script src="module4/data/data.module.js"></script>
+<script src="module5/newsletter.module.js"></script>
 
 
-    <!-- Services -->
-    <script src="module4/data/menudata.service.js"></script>
+<!-- Components -->
+<script src="module4/menuapp/categories.component.js"></script>
+<script src="module4/menuapp/items.component.js"></script>
+<script src="module5/newsletter-home.component.js"></script>
+<script src="module5/sign-up.component.js"></script>
+<script src="module5/my-info.component.js"></script>
 
-    <!-- Routes -->
-    <script src="module4/route.js"></script>
 
+<!-- Services -->
+<script src="module4/data/menudata.service.js"></script>
+<script src="module5/newsletter.service.js"></script>
+
+<!-- Routes -->
+<script src="./route.js"></script>
 
 </html>

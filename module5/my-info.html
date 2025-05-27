@@ -1,0 +1,24 @@
+<div class="row justify-content-center">
+    <div class="col text-center" ng-if="!$ctrl.savedInfo.favouriteItem">
+        <span class="text-danger">Not Signed Up Yet. <a ui-sref="module5.signup">Sign up Now!</a></span>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col text-center">
+        <div class="card text-center" ng-if="$ctrl.savedInfo.favouriteItem">
+            <img ng-src="{{$ctrl.image_url}}" class="card-img-top" alt="{{$ctrl.savedInfo.favouriteItem.name}}">
+            <div class="card-body">
+                <h5 class="card-title">{{$ctrl.savedInfo.favouriteItem.name}}</h5>
+                <p class="card-text">{{$ctrl.savedInfo.favouriteItem.price_large | currency}}</p>
+                <p class="card-text">{{$ctrl.savedInfo.favouriteItem.description}}</p>
+                <br />
+                <h6 class="form-label">First Name&nbsp;:&nbsp;{{$ctrl.savedInfo.firstname}}</h6>
+                <h6 class="form-label">Last Name&nbsp;:&nbsp;{{$ctrl.savedInfo.lastname}}</h6>
+                <h6 class="form-label">Email&nbsp;:&nbsp;{{$ctrl.savedInfo.email}}</h6>
+                <h6 class="form-label">Phone Number&nbsp;:&nbsp;{{$ctrl.savedInfo.phone}}</h6>
+                <a ui-sref="module5.newsletter" class="btn btn-primary">Home</a>
+            </div>
+        </div>
+    </div>
+</div>

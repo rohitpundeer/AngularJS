@@ -1,11 +1,11 @@
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
-        <a class="link-opacity-100-hover" style="cursor: pointer;" ui-sref="home">
+        <a class="link-opacity-100-hover" style="cursor: pointer;" ui-sref="restaurantmenu.home">
             <h4>Home</h4>
         </a>
     </div>
 </nav>
 <ol class="list-group list-group-numbered">
     <li ng-repeat="cat in $ctrl.categories" class="list-group-item hover" style="cursor: pointer;"><a
-            ui-sref="items({ categoryShortName: cat.short_name })">{{cat.name}}</a></li>
+            ui-sref="restaurantmenu.items({ categoryShortName: cat.short_name })">{{cat.name}}</a></li>
 </ol>
